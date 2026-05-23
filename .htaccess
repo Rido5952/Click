@@ -1,0 +1,16 @@
+# .htaccess - URL Rewriting for Apache Server
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Prevent directory listing
+    Options -Indexes
+
+    # Do not rewrite directory or files that exist physically
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Rewrite all other paths to index.php
+    RewriteRule ^(.*)$ index.php?c=$1 [L,QSA]
+</IfModule>
